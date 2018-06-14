@@ -1,6 +1,17 @@
 # DeepCompression-caffe
 Caffe for Deep Compression
 
+# 简介
+      1.在.cu中目前仍然是调用cpu_data接口，所以可能会增加与gpu数据交换的额外耗时，这个不影响使用，
+        后面慢慢优化。~(已解决) 
+      2.目前每层权值修剪的比例仍然是预设的，这个比例需要迭代试验以实现在尽可能压缩权值的同时保证精度。
+        所以如何自动化选取阈值就成为了后面一个继续深入的课题。 
+      3.直接用caffe跑出来的模型依然是原始大小，因为模型依然是.caffemodel类型，
+        虽然大部分权值为0且共享，但每个权值依然以32float型存储，
+         故后续只需将非零权值及其下标以及聚类中心存储下来即可，这部分可参考作者论文，写的很详细。 
+      4.权值压缩仅仅压缩了模型大小，但在前向inference时不会带来速度提升。
+        因此，想要在移动端做好cnn部署，就需要结合小的模型架构、模型量化以及NEON指令加速等方法来实现。 
+
 # Introduction
 This is a simple caffe implementation of Deep Compression(https://arxiv.org/abs/1510.00149), including weight prunning and quantization.<br>
 According to the paper, the compression are implemented only on convolution and fully-connected layers.<br>
