@@ -297,7 +297,8 @@ class Layer {
   virtual inline bool AllowForceBackward(const int bottom_index) const {
     return true;
   }
-  
+
+////////////////// add 以及成员函数  ///////////////////
   virtual void ComputeBlobMask() {}
 
   /**
@@ -330,13 +331,14 @@ class Layer {
   Phase phase_;
   /** The vector that stores the learnable parameters as a set of blobs. */
   vector<shared_ptr<Blob<Dtype> > > blobs_;
-
+  
+/////////////////////////// add ////////////////////////////
+// 对pruning过程来说，可以定义一个mask来“屏蔽”修剪掉的权值，
+// 对于quantization过程来说，需定义一个indice来存储索引号，以及一个centroid结构来存放聚类中心。 
   //vector<int> masks_;
   Blob<int> masks_;
- 
   Blob<int> indices_;
   //vector<int> indices_;
-
   Blob<Dtype> centroids_;
   //vector<Dtype> centroids_;
 
