@@ -65,7 +65,8 @@ class BaseConvolutionLayer : public Layer<Dtype> {
   // compress_weights should return true if we are implementing cmpconv, so
   // that will set weights prunning and quantization
   virtual bool compress_weights() = 0;
- 
+
+//////////// add ////////////////////
   virtual void ComputeBlobMask() {}
 
   /// @brief The spatial dimensions of a filter kernel.
