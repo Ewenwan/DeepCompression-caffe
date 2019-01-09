@@ -1,6 +1,10 @@
 # DeepCompression-caffe
+
 Caffe for Deep Compression
 
+使用Caffe实现，需要加入一个mask来表示剪枝。剪枝的阈值，是该layer的权重标准差乘上某个超参数。
+
+[参考](https://xmfbit.github.io/2018/10/03/paper-summary-model-pruning/#more)
 # 简介
       1.在.cu中目前仍然是调用cpu_data接口，所以可能会增加与gpu数据交换的额外耗时，这个不影响使用，
         后面慢慢优化。~(已解决) 
